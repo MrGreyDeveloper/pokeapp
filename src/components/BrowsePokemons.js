@@ -33,7 +33,6 @@ function BrowsePokemons() {
     <div>
       <div>
         <label>
-          Items per page:
           <select value={limit} onChange={handleLimitChange}>
             <option value={5}>5</option>
             <option value={10}>10</option>
