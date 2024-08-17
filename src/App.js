@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import BrowsePokemons from "./components/BrowsePokemons";
 import PokemonDetails from "./components/PokemonDetails";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./i18n";
 
 function App() {
   return (
