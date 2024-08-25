@@ -16,12 +16,12 @@ const LanguageSwitcher = () => {
           onClick={() => changeLanguage("en")}
           aria-label="English"
           style={{
-            backgroundColor: i18n.language === "en" ? "#1976d2" : "transparent", // Highlight if selected
-            color: i18n.language === "en" ? "#fff" : "#1976d2", // Text color change based on selection
+            backgroundColor: i18n.language === "en" ? "#1976d2" : "transparent",
+            color: i18n.language === "en" ? "#fff" : "#1976d2",
             marginBottom: 8,
           }}
         >
-          EN
+          en
         </IconButton>
         <IconButton
           onClick={() => changeLanguage("de")}
@@ -31,7 +31,7 @@ const LanguageSwitcher = () => {
             color: i18n.language === "de" ? "#fff" : "#1976d2", // Text color change based on selection
           }}
         >
-          DE
+          de
         </IconButton>
       </div>
     </div>
