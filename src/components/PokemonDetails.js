@@ -55,6 +55,7 @@ const theme = createTheme({
 
 function PokemonDetails() {
   const { id } = useParams();
+  console.log("Rendering PokemonDetail component with ID:", id);
   const { pokemon, error, loading } = usePokemonData(id);
 
   if (loading) {
