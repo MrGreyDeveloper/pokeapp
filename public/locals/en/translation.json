@@ -1,6 +1,4 @@
 {
   "ChooseYourPokemon": "Choose Your Pokemon",
-  "5perPage": "5 per page",
-  "10perPage": "10 per page",
-  "50perPage": "50 per page"
+  "itemPerPage": "{{count}} per page"
 }
