@@ -11,6 +11,7 @@ export const usePokemonList = (page, limit) => {
 
   useEffect(() => {
     const fetchPokemons = async () => {
+      setLoading(true);
       try {
         const response = await fetch(
           `${PokemonsUrl}/pokemon?offset=${(page - 1) * limit}&limit=${limit}`
@@ -21,7 +22,7 @@ export const usePokemonList = (page, limit) => {
         const data = await response.json();
         setPokemons(data.results);
         setTotal(data.count);
-      } catch (eror) {
+      } catch (error) {
         setError(error.message);
       } finally {
         setLoading(false);
@@ -39,10 +40,12 @@ export const usePokemonList = (page, limit) => {
 export const usePokemonData = (id) => {
   const [pokemon, setPokemon] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("Fetching Pokemon data for ID:", id);
     const fetchPokemon = async () => {
+      setLoading(true);
       try {
         const response = await fetch(`${PokemonsUrl}/pokemon/${id}`);
         if (!response.ok) {
