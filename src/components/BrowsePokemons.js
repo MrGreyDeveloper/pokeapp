@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
+import Loading from "./loading";
+import Error from "./error";
 import {
   Container,
   Typography,
@@ -97,35 +99,11 @@ function BrowsePokemons() {
   }, [page, limit, navigate]);
 
   if (loading) {
-    return (
-      <ThemeProvider theme={theme}>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="100vh"
-          bgcolor="background.default"
-        >
-          <CircularProgress />
-        </Box>
-      </ThemeProvider>
-    );
+    return <Loading />;
   }
 
   if (error) {
-    return (
-      <ThemeProvider theme={theme}>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="100vh"
-          bgcolor="background.default"
-        >
-          <Alert severity="error">{error}</Alert>
-        </Box>
-      </ThemeProvider>
-    );
+    return <Error message={error} />;
   }
 
   return (
@@ -152,36 +130,48 @@ function BrowsePokemons() {
               displayEmpty
               sx={{ color: "white" }}
             >
-              <MenuItem value={5}>{t("5perPage")}</MenuItem>
-              <MenuItem value={10}>{t("10perPage")}</MenuItem>
-              <MenuItem value={50}>{t("50perPage")}</MenuItem>
+              <MenuItem value={5}>{t("itemPerPage", { count: 5 })}</MenuItem>
+              <MenuItem value={10}>{t("itemPerPage", { count: 10 })}</MenuItem>
+              <MenuItem value={50}>{t("itemPerPage", { count: 50 })}</MenuItem>
             </Select>
           </FormControl>
         </Box>
         <Grid container spacing={4}>
-          {" "}
           {pokemons.map((pokemon) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={pokemon.name}>
-              <Card
-                component={Link}
+              <Link
                 to={`/pokemon/${pokemon.name}`}
-                sx={{ textDecoration: "none" }}
+                style={{ textDecoration: "none" }}
               >
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                    pokemon.url.split("/")[pokemon.url.split("/").length - 2]
-                  }.png`}
-                  alt={pokemon.name}
-                  style={{ objectFit: "contain" }}
-                />
-                <CardContent>
-                  <Typography variant="h6" component="div" align="center">
-                    {pokemon.name}
-                  </Typography>
-                </CardContent>
-              </Card>
+                <Card
+                  sx={{
+                    textDecoration: "none",
+                    boxShadow: 3,
+                    borderRadius: 2,
+                    "&:hover": {
+                      boxShadow: 6,
+                    },
+                    "&:focus": {
+                      outline: "none",
+                    },
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                      pokemon.url.split("/")[pokemon.url.split("/").length - 2]
+                    }.png`}
+                    alt={pokemon.name}
+                    style={{ objectFit: "contain" }}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" component="div" align="center">
+                      {pokemon.name}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Link>
             </Grid>
           ))}
         </Grid>
