@@ -3,9 +3,6 @@ import { useParams } from "react-router-dom";
 import {
   Container,
   Typography,
-  Box,
-  CircularProgress,
-  Alert,
   Card,
   CardContent,
   CardMedia,
@@ -15,6 +12,8 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { usePokemonData } from "./HooksEffect";
+import Loading from "./loading.js";
+import Error from "./error.js";
 
 const theme = createTheme({
   palette: {
@@ -55,39 +54,14 @@ const theme = createTheme({
 
 function PokemonDetails() {
   const { id } = useParams();
-  console.log("Rendering PokemonDetail component with ID:", id);
-  const { pokemon, error, loading } = usePokemonData(id);
+  const { pokemon, loading, error } = usePokemonData(id);
 
   if (loading) {
-    return (
-      <ThemeProvider theme={theme}>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="100vh"
-          bgcolor="background.default"
-        >
-          <CircularProgress />
-        </Box>
-      </ThemeProvider>
-    );
+    return <Loading />;
   }
 
   if (error) {
-    return (
-      <ThemeProvider theme={theme}>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="100vh"
-          bgcolor="background.default"
-        >
-          <Alert severity="error">{error}</Alert>
-        </Box>
-      </ThemeProvider>
-    );
+    return <Error message={error} />;
   }
 
   return (
@@ -96,7 +70,7 @@ function PokemonDetails() {
         maxWidth={false}
         sx={{ bgcolor: "background.default", minHeight: "100vh", py: 3 }}
       >
-        {pokemon ? (
+        {pokemon && (
           <Card>
             <CardMedia
               component="img"
@@ -113,8 +87,8 @@ function PokemonDetails() {
               <Typography variant="body1">Weight: {pokemon.weight}</Typography>
               <Typography variant="h6">Stats</Typography>
               <List>
-                {pokemon.stats.map((stat) => (
-                  <ListItem key={stat.stat.name}>
+                {pokemon.stats.map((stat, index) => (
+                  <ListItem key={`{stat.stat.name}-${index}`}>
                     <ListItemText
                       primary={`${stat.stat.name}: ${stat.base_stat}`}
                     />
@@ -123,8 +97,8 @@ function PokemonDetails() {
               </List>
               <Typography variant="h6">Abilities</Typography>
               <List>
-                {pokemon.abilities.map((ability) => (
-                  <ListItem key={ability.ability.name}>
+                {pokemon.abilities.map((ability, index) => (
+                  <ListItem key={`{ability.ability.name}-${index}`}>
                     <ListItemText
                       primary={`${ability.ability.name} ${
                         ability.is_hidden ? "(Hidden)" : ""
@@ -135,8 +109,6 @@ function PokemonDetails() {
               </List>
             </CardContent>
           </Card>
-        ) : (
-          <CircularProgress />
         )}
       </Container>
     </ThemeProvider>
