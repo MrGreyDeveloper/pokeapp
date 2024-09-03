@@ -27,8 +27,8 @@ const LanguageSwitcher = () => {
           onClick={() => changeLanguage("de")}
           aria-label="German"
           style={{
-            backgroundColor: i18n.language === "de" ? "#1976d2" : "transparent", // Highlight if selected
-            color: i18n.language === "de" ? "#fff" : "#1976d2", // Text color change based on selection
+            backgroundColor: i18n.language === "de" ? "#1976d2" : "transparent",
+            color: i18n.language === "de" ? "#fff" : "#1976d2",
           }}
         >
           de
