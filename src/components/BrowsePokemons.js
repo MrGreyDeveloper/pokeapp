@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
-import Loading from "./loading";
-import Error from "./error";
 import {
   Container,
   Typography,
@@ -10,8 +8,6 @@ import {
   MenuItem,
   FormControl,
   Select,
-  CircularProgress,
-  Alert,
   Grid,
   Card,
   CardContent,
@@ -80,7 +76,7 @@ function BrowsePokemons() {
 
   const [page, setPage] = useState(initialPage);
   const [limit, setLimit] = useState(initialLimit);
-  const { pokemons, total, error, loading } = usePokemonList(page, limit);
+  const { pokemons, total, error } = usePokemonList(page, limit);
 
   const handlePageChange = (event, value) => {
     setPage(value);
@@ -98,12 +94,17 @@ function BrowsePokemons() {
     navigate(`?page=${page}&perPage=${limit}`);
   }, [page, limit, navigate]);
 
-  if (loading) {
-    return <Loading />;
-  }
-
   if (error) {
-    return <Error message={error} />;
+    return (
+      <Container
+        maxWidth={false}
+        sx={{ bgcolor: "background.default", minHeight: "100vh", py: 3 }}
+      >
+        <Typography variant="h6" color="error">
+          {t("ErrorMessage")}
+        </Typography>
+      </Container>
+    );
   }
 
   return (
