@@ -1,1 +1,1 @@
-export * from "./hooksEffect";
+export * from "./HooksEffect";
