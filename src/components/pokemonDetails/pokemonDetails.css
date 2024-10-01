@@ -1,0 +1,35 @@
+/* PokemonDetails.css */
+
+.container {
+  background-color: #505050;
+  min-height: 100vh;
+  padding: 3rem;
+}
+
+.card {
+  background-color: #2e2e2e;
+  color: #ffffff;
+  border: 1px solid #424242;
+  width: 60%;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.card-media {
+  object-fit: contain;
+  width: 150px;
+  margin: 0 auto;
+}
+
+.typography-h4 {
+  color: #ffffff;
+  text-align: center;
+}
+
+.typography-body1 {
+  color: #ffffff;
+}
+
+.list-item {
+  color: #ffffff;
+}
