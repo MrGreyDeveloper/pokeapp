@@ -1,0 +1,48 @@
+/* BrowsePokemons.css */
+
+.container {
+  background-color: #2d2d2d;
+  min-height: 100vh;
+  padding: 3rem;
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.card {
+  background-color: #333333;
+  color: #ffffff;
+  border: 1px solid #444444;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.08);
+}
+
+.card-media {
+  object-fit: contain;
+}
+
+.typography-h4 {
+  color: #e0e0e0;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.typography-h6 {
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
