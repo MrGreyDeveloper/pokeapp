@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { PokemonsUrl } from "./constants";
+import { PokemonsUrl } from "../components/constants/constants";
+// import BrowsePokemons from "../components/browsePokemons/browsePokemons";
+// import LanguageSwitcher from "../components/languageSwitcher/languageSwitcher";
 
 export const usePokemonList = (page, limit) => {
   const [pokemons, setPokemons] = useState([]);
@@ -41,11 +43,11 @@ export const usePokemonData = (id) => {
   const [pokemon, setPokemon] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const hasFeched = useRef(false);
+  const forCall = useRef(false);
 
   useEffect(() => {
-    if (hasFeched.current) return;
-    hasFeched.current = true;
+    if (forCall.current) return;
+    forCall.current = true;
 
     console.log("Fetching Pokemon data for ID:", id);
     const fetchPokemon = async () => {
