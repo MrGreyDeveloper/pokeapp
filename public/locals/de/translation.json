@@ -1,10 +1,5 @@
 {
   "ChooseYourPokemon": "Wähle dein Pokémon",
   "itemPerPage": "{{count}} pro Seite",
-  "SearchByName": "Nach Namen suchen",
-  "Height": "Höhe",
-  "Weight": "Gewicht",
-  "Stats": "Werte",
-  "Abilities": "Fähigkeiten",
-  "hidden": "(Versteckt)"
+  "SearchByName": "Nach Namen suchen"
 }
