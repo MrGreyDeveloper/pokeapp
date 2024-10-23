@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
+import { Grid } from "@mui/material";
 import {
-  Container,
-  Typography,
-  Box,
-  MenuItem,
-  FormControl,
-  Select,
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
-} from "@mui/material";
+  StyledContainer,
+  StyledGrid,
+  StyledCard,
+  StyledCardMedia,
+  StyledCardContent,
+  StyledTypography,
+  StyledBox,
+} from "./muiStyles";
 import { usePokemonList } from "../../HooksEffect/hooksEffect";
 import LanguageSwitcher from "../languageSwitcher/languageSwitcher";
+import PokemonHeader from "../PokemonHeader/pokemonHeader";
 import { useTranslation } from "react-i18next";
 import "./browsePokemons.css";
 
@@ -33,6 +32,7 @@ function BrowsePokemons() {
 
   const [page, setPage] = useState(initialPage);
   const [limit, setLimit] = useState(initialLimit);
+  const [searchTerm, setSearchTerm] = useState("");
   const { pokemons, total, error } = usePokemonList(page, limit);
 
   const handlePageChange = (event, value) => {
@@ -41,6 +41,10 @@ function BrowsePokemons() {
 
   const handleLimitChange = (event) => {
     setLimit(Number(event.target.value));
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
   };
 
   useEffect(() => {
@@ -53,73 +57,57 @@ function BrowsePokemons() {
 
   if (error) {
     return (
-      <Container maxWidth={false} className="container">
-        <Typography variant="h6" color="error">
+      <StyledContainer>
+        <StyledTypography variant="h6" color="error">
           {t("ErrorMessage")}
-        </Typography>
-      </Container>
+        </StyledTypography>
+      </StyledContainer>
     );
   }
 
+  const filteredPokemons = pokemons.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(searchTerm)
+  );
+
   return (
-    <Container maxWidth={false} className="container">
+    <StyledContainer className="background-theme">
       <LanguageSwitcher />
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        mb={2}
-        className="header-box"
-      >
-        <Typography className="typography-h4">
-          {t("ChooseYourPokemon")}
-        </Typography>
-        <FormControl variant="outlined" className="form-control">
-          <Select
-            value={limit}
-            onChange={handleLimitChange}
-            displayEmpty
-            className="select"
-          >
-            <MenuItem value={5}>{t("itemPerPage", { count: 5 })}</MenuItem>
-            <MenuItem value={10}>{t("itemPerPage", { count: 10 })}</MenuItem>
-            <MenuItem value={50}>{t("itemPerPage", { count: 50 })}</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-      <Grid container spacing={4} className="grid-container">
-        {pokemons.map((pokemon) => (
+      <PokemonHeader
+        limit={limit}
+        onLimitChange={handleLimitChange}
+        onSearchChange={handleSearchChange}
+      />
+      <StyledGrid container spacing={2}>
+        {" "}
+        {filteredPokemons.map((pokemon) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={pokemon.name}>
             <Link to={`/pokemon/${pokemon.name}`} className="link">
-              <Card className="card">
-                <CardMedia
+              <StyledCard>
+                <StyledCardMedia
                   component="img"
                   height="140"
                   image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
                     pokemon.url.split("/")[pokemon.url.split("/").length - 2]
                   }.png`}
                   alt={pokemon.name}
-                  className="card-media"
                 />
-                <CardContent>
-                  <Typography className="typography-h6" align="center">
-                    {pokemon.name}
-                  </Typography>
-                </CardContent>
-              </Card>
+                <StyledCardContent>
+                  <StyledTypography>{pokemon.name}</StyledTypography>
+                </StyledCardContent>
+              </StyledCard>
             </Link>
           </Grid>
         ))}
-      </Grid>
-      <Box display="flex" justifyContent="center" mt={2} className="pagination">
+      </StyledGrid>
+      <StyledBox>
         <Pagination
           count={Math.ceil(total / limit)}
           page={page}
           onChange={handlePageChange}
           color="primary"
         />
-      </Box>
-    </Container>
+      </StyledBox>
+    </StyledContainer>
   );
 }
 
