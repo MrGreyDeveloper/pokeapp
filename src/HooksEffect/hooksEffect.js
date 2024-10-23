@@ -1,15 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { PokemonsUrl } from "../components/constants/constants";
-// import BrowsePokemons from "../components/browsePokemons/browsePokemons";
-// import LanguageSwitcher from "../components/languageSwitcher/languageSwitcher";
+import { PokemonsUrl } from "../constants/constants";
 
 export const usePokemonList = (page, limit) => {
   const [pokemons, setPokemons] = useState([]);
   const [total, setTotal] = useState(0);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  //Hook za dobijanje liste pokemona
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -36,8 +32,6 @@ export const usePokemonList = (page, limit) => {
 
   return { pokemons, total, error, loading };
 };
-
-//Hook za dobijanje podataka o pojedinacnom pokemonu
 
 export const usePokemonData = (id) => {
   const [pokemon, setPokemon] = useState(null);
