@@ -1,10 +1,5 @@
 {
   "ChooseYourPokemon": "Choose Your Pokemon",
   "itemPerPage": "{{count}} per page",
-  "SearchByName": "Search By Name",
-  "Height": "Height",
-  "Weight": "Weight",
-  "Stats": "Stats",
-  "Abilities": "Abilities",
-  "hidden": "(Hidden)"
+  "SearchByName": "Search By Name"
 }
