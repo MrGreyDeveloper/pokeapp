@@ -1,64 +1,16 @@
-.container {
-  background-color: #1c1c1c !important;
-  min-height: 100vh !important;
-  padding: 3rem !important;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
 }
 
-.grid-container {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 2rem !important;
-}
-
-.card {
-  background-color: #1c1c1c !important;
-  color: #ffffff !important;
-  border: 1px solid #424242 !important;
-  width: 60% !important;
-  margin: 0 auto !important;
-  padding: 16px !important;
-  border-radius: 10px !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
-}
-
-.card:hover {
-  transform: scale(1.08) !important;
-  background-color: #444444 !important;
-}
-
-.card-media {
-  object-fit: contain !important;
-  height: 140px !important;
-}
-
-.typography-h4 {
-  color: #f0f0f0 !important;
-  font-size: 3rem !important;
-  text-align: center !important;
-}
-
-.typography-h6 {
-  color: #ffffff !important;
-  font-size: 1.2rem !important;
-  text-align: center !important;
-  font-weight: bold !important;
-}
-
-.pagination {
-  margin-top: 2rem !important;
-  display: flex !important;
-  justify-content: center !important;
-}
-
-.form-control {
-  color: #f0f0f0 !important;
-}
-
-.select {
-  color: #f0f0f0 !important;
-  background-color: #333333 !important;
-}
-
-.MuiPaginationItem-root {
-  color: white !important;
+.background-theme {
+  background: linear-gradient(
+    to right,
+    rgba(255, 204, 255, 0.8),
+    rgba(255, 255, 204, 0.8)
+  );
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
