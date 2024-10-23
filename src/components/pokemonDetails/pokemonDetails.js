@@ -1,18 +1,15 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import {
-  Container,
-  Typography,
-  Card,
-  CardContent,
-  List,
-  ListItem,
-  ListItemText,
-} from "@mui/material";
-import { usePokemonData } from "../../HooksEffect/hooksEffect";
+import { List, ListItem, ListItemText } from "@mui/material";
+import { usePokemonData } from "../../HooksEffect/hooksEffect.js";
 import Loading from "../loading/loading.js";
-import Error from "../error/error";
-import "./pokemonDetails.css";
+import Error from "../error/error.js";
+import {
+  StyledContainer,
+  StyledCard,
+  StyledCardContent,
+  StyledTypography,
+} from "./pokemonDetailsStyles";
 
 function PokemonDetails() {
   const { id } = useParams();
@@ -27,43 +24,36 @@ function PokemonDetails() {
   }
 
   return (
-    <Container maxWidth={false} className="container">
+    <StyledContainer>
       {pokemon && (
-        <Card className="card">
+        <StyledCard>
           <img
-            className="card-media"
             src={pokemon.sprites.front_default}
             alt={pokemon.name}
-            height="200"
+            style={{ height: "200px", width: "auto", borderRadius: "16px" }}
           />
-          <CardContent>
-            <Typography className="typography-h4">{pokemon.name}</Typography>
-            <Typography className="typography-body1">
+          <StyledCardContent>
+            <StyledTypography variant="h4">{pokemon.name}</StyledTypography>
+            <StyledTypography variant="body1">
               Height: {pokemon.height}
-            </Typography>
-            <Typography className="typography-body1">
+            </StyledTypography>
+            <StyledTypography variant="body1">
               Weight: {pokemon.weight}
-            </Typography>
-            <Typography className="typography-h6">Stats</Typography>
+            </StyledTypography>
+            <StyledTypography variant="h6">Stats</StyledTypography>
             <List>
               {pokemon.stats.map((stat, index) => (
-                <ListItem
-                  key={`{stat.stat.name}-${index}`}
-                  className="list-item"
-                >
+                <ListItem key={`${stat.stat.name}-${index}`}>
                   <ListItemText
                     primary={`${stat.stat.name}: ${stat.base_stat}`}
                   />
                 </ListItem>
               ))}
             </List>
-            <Typography className="typography-h6">Abilities</Typography>
+            <StyledTypography variant="h6">Abilities</StyledTypography>
             <List>
               {pokemon.abilities.map((ability, index) => (
-                <ListItem
-                  key={`{ability.ability.name}-${index}`}
-                  className="list-item"
-                >
+                <ListItem key={`${ability.ability.name}-${index}`}>
                   <ListItemText
                     primary={`${ability.ability.name} ${
                       ability.is_hidden ? "(Hidden)" : ""
@@ -72,10 +62,10 @@ function PokemonDetails() {
                 </ListItem>
               ))}
             </List>
-          </CardContent>
-        </Card>
+          </StyledCardContent>
+        </StyledCard>
       )}
-    </Container>
+    </StyledContainer>
   );
 }
 
