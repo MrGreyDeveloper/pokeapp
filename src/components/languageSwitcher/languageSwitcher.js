@@ -10,15 +10,16 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div style={{ position: "fixed", top: 16, right: 16, zIndex: 10 }}>
-      <div style={{ display: "flex", flexDirection: "column" }}>
+    <div style={{ position: "fixed", bottom: 16, right: 16, zIndex: 10 }}>
+      <div style={{ display: "flex", flexDirection: "row", gap: "8px" }}>
         <IconButton
           onClick={() => changeLanguage("en")}
           aria-label="English"
           style={{
-            backgroundColor: i18n.language === "en" ? "#1976d2" : "transparent",
-            color: i18n.language === "en" ? "#fff" : "#1976d2",
-            marginBottom: 8,
+            backgroundColor: i18n.language === "en" ? "#6a1b9a" : "transparent",
+            color: i18n.language === "en" ? "#fff" : "#6a1b9a",
+            borderRadius: "8px", // To make it look more boxy
+            padding: "8px", // To increase the size
           }}
         >
           en
@@ -27,8 +28,10 @@ const LanguageSwitcher = () => {
           onClick={() => changeLanguage("de")}
           aria-label="German"
           style={{
-            backgroundColor: i18n.language === "de" ? "#1976d2" : "transparent",
-            color: i18n.language === "de" ? "#fff" : "#1976d2",
+            backgroundColor: i18n.language === "de" ? "#6a1b9a" : "transparent",
+            color: i18n.language === "de" ? "#fff" : "#6a1b9a",
+            borderRadius: "8px", // To make it look more boxy
+            padding: "8px", // To increase the size
           }}
         >
           de

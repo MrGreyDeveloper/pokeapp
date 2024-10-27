@@ -1,4 +1,5 @@
 {
   "ChooseYourPokemon": "Wähle dein Pokémon",
-  "itemPerPage": "{{count}} pro Seite"
+  "itemPerPage": "{{count}} pro Seite",
+  "SearchByName": "Nach Namen suchen"
 }
